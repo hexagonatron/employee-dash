@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react';
+import './assets/css/App.css';
+
+import Header from './components/Header'
+import Table from './components/Table'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [darkMode, setDarkmode] = useState(false);
+
+    const darkModeToggle = (e) => {
+        console.log(e.target.checked)
+        setDarkmode(e.target.checked)
+    }
+
+
+    return (
+        <div className={`page-wrapper ${darkMode?"dark-mode":""}`}>
+            <div className="content-wrapper">
+            <Header darkModeToggle={darkModeToggle}/>
+            <Table/>
+
+            </div>
+        </div>
+	);
 }
 
 export default App;
