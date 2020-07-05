@@ -13,7 +13,7 @@ function Header({darkModeToggle}) {
                 <h1><i className="fas fa-address-book"></i> Employee Directory</h1>
             </div>
             <div className="navbar-content">
-                <Toggle label="Dark-mode" change={darkModeToggle}/>
+                <Toggle label={<i className="fas fa-moon"></i>} change={darkModeToggle}/>
             </div>
         </nav>
     );

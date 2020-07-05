@@ -1,12 +1,11 @@
 import React from 'react';
 
-function Table(){
+function EmployeeTable(){
     return (
         <div className="container">
             <h1>thing</h1>
-
         </div>
     );
 }
 
-export default Table;
+export default EmployeeTable;
