@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import './assets/css/App.css';
 
 import Header from './components/Header'
-import Table from './components/Table'
+import Directory from './components/Directory'
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
         <div className={`page-wrapper ${darkMode?"dark-mode":""}`}>
             <div className="content-wrapper">
             <Header darkModeToggle={darkModeToggle}/>
-            <Table/>
+            <Directory/>
 
             </div>
         </div>

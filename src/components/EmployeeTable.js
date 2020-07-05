@@ -1,10 +1,22 @@
 import React from 'react';
 
-function EmployeeTable(){
+import TableRow from './TableRow'
+
+function EmployeeTable({employees}){
     return (
-        <div className="container">
-            <h1>thing</h1>
-        </div>
+        <table className="table table-striped">
+  <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th className="text-right">Country</th>
+    </tr>
+  </thead>
+  <tbody>
+        {employees.map((employee, i) => <TableRow employee={employee} key={i}/>)}
+  </tbody>
+</table>
     );
 }
 

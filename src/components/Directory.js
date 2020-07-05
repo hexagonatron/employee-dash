@@ -15,12 +15,14 @@ const Directory = () => {
         })
 
 
-    }, [])
+    }, []);
+
+
 
     return (
-        <div>
+        <div className="container">
             <DirectoryControls />
-            <EmployeeTable />
+            <EmployeeTable employees={employees}/>
         </div>
     );
 };
