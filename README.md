@@ -6,7 +6,7 @@ A sortable and searchable employee directory. Built using React. Styling provide
 ## Features
 
 - Searchable by employee name
-- Displayable by employee age, country or name
+- Sortable by employee age, country or name
 - Toggleable dark mode
 
 ## Licence
