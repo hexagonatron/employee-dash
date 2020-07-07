@@ -11,7 +11,7 @@ const SortToggle = ({field, sortClickHandler, sortObj}) => {
                 "fa fa-sort-down";
 
     return (
-        <i className={sortClass} aria-hidden="true" onClick={sortClickHandler} data-field={field}></i>
+        <i className={sortClass} aria-hidden="true" onClick={sortClickHandler} data-field={field} style={{cursor:"pointer"}}></i>
     );
 };
 
