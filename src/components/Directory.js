@@ -7,7 +7,7 @@ import EmployeeTable from './EmployeeTable'
 const Directory = () => {
 
     const [employees, setEmployees] = useState([]);
-    const [sortObj, updateSort] = useState({field: "name", order: "dsc"});
+    const [sortObj, updateSort] = useState({field: "name", order: "asc"});
     const [filterObj, updateFilter] = useState({name:""});
     const [filteredEmployees, updateFilteredEmployees] = useState([]);
 
@@ -19,21 +19,48 @@ const Directory = () => {
         })
     }, []);
 
+
     //Update filtered employees whenever something changes
     useEffect(() => {
         console.log(filterObj);
+        console.log(sortObj);
         
-        let newEmployees = employees
+        let newEmployees = [...employees]
 
+        //apply filters
         if(newEmployees.length && filterObj.name){
             newEmployees = newEmployees.filter(employee => {
                 return (employee.name.first.toLowerCase().includes(filterObj.name.toLowerCase()));
             })
         }
 
+        //sort functions based on different sort fields
+        const sortFunctions = {
+            name: (a,b) => {
+                const aName =`${a.name.first} ${a.name.last}`.toLowerCase();
+
+                const bName =`${b.name.first} ${b.name.last}`.toLowerCase();
+
+                return aName < bName? -1 : aName > bName? 1 : 0;
+            },
+            age: (a,b) => {
+                return a.dob.age - b.dob.age
+            },
+            country: (a,b) => {
+                return a.location.country < b.location.country? -1 : a.location.country > b.location.country? 1: 0
+            }
+        }
+
+        //apply sorting
         if(newEmployees.length && sortObj){
-            newEmployees = newEmployees.filter(employee => {
-                return (employee.name.first.toLowerCase().includes(filterObj.name.toLowerCase()));
+            newEmployees = newEmployees.sort((a, b) => {
+                //get output from sort function
+                let sortVal = sortFunctions[sortObj.field](a, b)
+
+                //if using reverse sort then reverse value
+                sortVal = sortObj.order === "dsc"? sortVal*-1: sortVal
+
+                return sortVal
             })
         }
 
@@ -41,13 +68,27 @@ const Directory = () => {
     }, [employees, sortObj, filterObj])
 
 
+    const sortClickHandler = (e) => {
+        const field = e.target.dataset.field
 
+        console.log(field)
+
+        if(sortObj.field === field){
+            if(sortObj.order === "asc"){
+                updateSort({field: field, order: "dsc"})
+            } else {
+                updateSort({field: field, order: "asc"})
+            }
+        } else {
+            updateSort({field: field, order: "asc"});
+        }
+    }
 
 
     return (
         <div className="container">
             <DirectoryControls updateFilter={updateFilter}/>
-            <EmployeeTable employees={filteredEmployees} />
+            <EmployeeTable employees={filteredEmployees} sortClickHandler={sortClickHandler} sortObj={sortObj}/>
         </div>
     );
 };
