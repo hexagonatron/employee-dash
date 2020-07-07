@@ -22,8 +22,6 @@ const Directory = () => {
 
     //Update filtered employees whenever something changes
     useEffect(() => {
-        console.log(filterObj);
-        console.log(sortObj);
         
         let newEmployees = [...employees]
 
@@ -87,8 +85,10 @@ const Directory = () => {
 
     return (
         <div className="container">
+            <div className="content">
             <DirectoryControls updateFilter={updateFilter}/>
             <EmployeeTable employees={filteredEmployees} sortClickHandler={sortClickHandler} sortObj={sortObj}/>
+            </div>
         </div>
     );
 };

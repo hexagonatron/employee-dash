@@ -7,7 +7,7 @@ const DirectoryControls = ({updateFilter}) => {
     }
 
     return (
-        <div>
+        <div className="content">
             <input type="text" className="form-control" placeholder="Search by name" onChange={filterChangeHandler}></input>
         </div>
     );
