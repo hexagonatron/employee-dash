@@ -28,7 +28,7 @@ const Directory = () => {
         //apply filters
         if(newEmployees.length && filterObj.name){
             newEmployees = newEmployees.filter(employee => {
-                return (employee.name.first.toLowerCase().includes(filterObj.name.toLowerCase()));
+                return (`${employee.name.first.toLowerCase()} ${employee.name.last.toLowerCase()}`.includes(filterObj.name.toLowerCase()));
             })
         }
 
